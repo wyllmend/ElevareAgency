@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briefing Rápido – Elevare Agency</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="form-briefing.js"></script>
+  <style>
+    /* Fundo degradê da Elevare */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--brand, #ff4d00), var(--brand-2, #ff914d));
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .question {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .question.active {
+      display: flex;
+    }
+
+    input, textarea {
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    button {
+      background: #fff;
+      color: var(--brand, #ff4d00);
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #f2f2f2;
+      transform: scale(1.03);
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.7rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    label:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+      margin-right: 8px;
+      accent-color: var(--brand, #ff4d00);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form id="briefingForm">
+      <div class="question active">
+        <h2>Como você se chama?</h2>
+        <p>Pode ser só o primeiro nome — a gente é amigo 😄</p>
+        <input type="text" name="nome" required />
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Qual é o nome da sua marca ou empresa?</h2>
+        <p>Se ainda não tiver, pode deixar em branco</p>
+        <input type="text" name="empresa" />
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Qual serviço você está buscando com a Elevare?</h2>
+        <p>Escolha uma ou mais opções 👇</p>
+        <div class="options">
+          <label><input type="checkbox" name="servicos" value="Gestão de tráfego" />🚀 Gestão de tráfego</label>
+          <label><input type="checkbox" name="servicos" value="Social Media" />📱 Social Media</label>
+          <label><input type="checkbox" name="servicos" value="Design" />🎨 Design</label>
+          <label><input type="checkbox" name="servicos" value="Vídeo / Produção" />🎥 Vídeo / Produção</label>
+          <label><input type="checkbox" name="servicos" value="Site / Desenvolvimento" />💻 Site / Desenvolvimento</label>
+          <label><input type="checkbox" name="servicos" value="Consultoria" />💬 Consultoria</label>
+          <label><input type="checkbox" name="servicos" value="Outro" />✍️ Outro</label>
+        </div>
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Qual é o seu principal objetivo com o marketing digital?</h2>
+        <p>Exemplo: aumentar vendas online, ganhar visibilidade...</p>
+        <textarea name="objetivo"></textarea>
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Você já possui identidade visual ou site?</h2>
+        <div class="options">
+          <label><input type="radio" name="identidade" value="Sim" />✅ Sim</label>
+          <label><input type="radio" name="identidade" value="Não" />❌ Não</label>
+        </div>
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Tem redes sociais ativas?</h2>
+        <p>Se sim, qual é o @?</p>
+        <input type="text" name="instagram" placeholder="@fulanostore" />
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Quem é o seu público-alvo?</h2>
+        <input type="text" name="publico" placeholder="Ex: Jovens 18–25, mães, empreendedores locais..." />
+        <button type="button" onclick="nextQuestion()">Avançar ➜</button>
+      </div>
+
+      <div class="question">
+        <h2>Deseja acrescentar alguma observação?</h2>
+        <textarea name="observacoes" placeholder="Fique à vontade pra contar mais sobre sua marca 💬"></textarea>
+        <button type="submit">Enviar 🚀</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
