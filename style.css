@@ -1,6 +1,5 @@
 /* -------------------------
    ELEVARE — style.css
-   (Cole este arquivo como style.css)
    ------------------------- */
 
 :root{
@@ -227,4 +226,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .float-whats, .float-whats::after { animation: none !important; transition: none !important; transform: none !important; }
 }
+
 

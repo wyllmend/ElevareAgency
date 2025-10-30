@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevare | Solicite seu serviço</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo.png">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #F24E1E, #FF8743);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .form-container {
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF8743, #F24E1E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+    }
+
+    .question {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-bottom: 2px solid rgba(255,255,255,0.6);
+      background: transparent;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.8);
+    }
+
+    button {
+      background-color: #fff;
+      color: #F24E1E;
+      border: none;
+      padding: 10px 22px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #d63e12;
+      color: white;
+    }
+
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: rgba(255,255,255,0.8);
+      transition: width 0.4s ease;
+    }
+
+    @media (max-width: 480px) {
+      .logo { width: 48px; height: 48px; top: 10px; left: 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo"><img src="assets/logo-branco.png" alt="Elevare" height="42" class="me-2"></div>
+  <div class="form-container">
+    <div class="progress" id="progress"></div>
+
+    <form id="elevareForm">
+      <div class="question active">
+        <h2>Qual o seu nome e o nome do seu negócio?</h2>
+        <input type="text" name="nome" placeholder="Sua resposta..." required>
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Qual serviço você busca com a Elevare?</h2>
+        <textarea name="servicos" placeholder="🚀 Gestão de tráfego, 🎨 Design..." required></textarea>
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Qual é o seu principal objetivo com o marketing digital?</h2>
+        <textarea name="objetivo" placeholder="Ex: aumentar vendas, ganhar visibilidade..." required></textarea>
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Você já possui identidade visual ou site?</h2>
+        <input type="text" name="identidade" placeholder="Sim / Não / Parcialmente" required>
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Tem redes sociais ativas? Se sim, qual é o @?</h2>
+        <input type="text" name="redes" placeholder="@seudominio">
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Quem é o seu público-alvo?</h2>
+        <textarea name="publico" placeholder="Ex: jovens empreendedores, mães, empresas locais..." required></textarea>
+        <button type="button" onclick="nextQuestion()">Avançar</button>
+      </div>
+
+      <div class="question">
+        <h2>Deseja acrescentar alguma observação?</h2>
+        <textarea name="obs" placeholder="Mensagem adicional..."></textarea>
+        <button type="submit">Enviar pelo WhatsApp</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll('.question');
+    const progress = document.getElementById('progress');
+    let current = 0;
+
+    function nextQuestion() {
+      if (current < questions.length - 1) {
+        questions[current].classList.remove('active');
+        current++;
+        questions[current].classList.add('active');
+        progress.style.width = ((current + 1) / questions.length) * 100 + '%';
+      }
+    }
+
+    document.getElementById('elevareForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const f = e.target;
+      const nome = f.nome.value;
+      const servicos = f.servicos.value;
+      const objetivo = f.objetivo.value;
+      const identidade = f.identidade.value;
+      const redes = f.redes.value;
+      const publico = f.publico.value;
+      const obs = f.obs.value;
+
+      const mensagem =
+      `💼 *Novo Contato Elevare!*\n\n` +
+      `👤 *Nome e Negócio:* ${nome}\n` +
+      `🎯 *Serviços desejados:* ${servicos}\n` +
+      `🚀 *Objetivo:* ${objetivo}\n` +
+      `🖌️ *Identidade / Site:* ${identidade}\n` +
+      `📱 *Redes sociais:* ${redes}\n` +
+      `🎯 *Público-alvo:* ${publico}\n` +
+      `🗒️ *Observações:* ${obs}\n\n` +
+      `Enviado pelo formulário interativo da *Elevare Agency* ⚡`;
+
+      const numero = '5588994146017';
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>

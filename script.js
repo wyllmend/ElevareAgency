@@ -1,5 +1,5 @@
 /* script.js - Elevare Experience (versão otimizada sem formulário)
-   Autor: Wyllen / VNTMKT
+   Autor: Wyllen 
    Atualizado com melhorias de performance e acessibilidade
 */
 
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ==============================
      CONFIGURAÇÃO GLOBAL
   ============================== */
-  const WHATS_PHONE = '5588999999999'; // <-- coloque aqui o número oficial do WhatsApp da Elevare
+  const WHATS_PHONE = '5588981645083'; // <-- coloque aqui o número oficial do WhatsApp da Elevare
   const WHATS_LINK = `https://wa.me/${WHATS_PHONE}`;
 
   /* ==============================
